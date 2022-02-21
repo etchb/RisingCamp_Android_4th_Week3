@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bttmenu_friend"
+        android:title="친구목록"
+        android:icon="@drawable/friends_list"/>
+    <item
+        android:id="@+id/bttmenu_talk_list"
+        android:title="채팅목록"
+        android:icon="@drawable/talk_list"/>
+    <item
+        android:id="@+id/bttmenu_view_page"
+        android:title="View"
+        android:icon="@drawable/view_page"/>
+    <item
+        android:id="@+id/bttmenu_shop_page"
+        android:title="Shop"
+        android:icon="@drawable/shop_page"/>
+    <item
+        android:id="@+id/bttmenu_setting"
+        android:title="설정"
+        android:icon="@drawable/setting"/>
+</menu>

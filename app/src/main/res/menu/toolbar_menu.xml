@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/tlb_ic_search"
+        app:showAsAction="always"
+        android:title="Add"
+        android:icon="@drawable/tlb_search"/>
+    <item
+        android:id="@+id/tlb_ic_talk_plus"
+        app:showAsAction="always"
+        android:title="Add"
+        android:icon="@drawable/tlb_talk_plus"/>
+    <item
+        android:id="@+id/tlb_ic_music"
+        app:showAsAction="always"
+        android:title="Add"
+        android:icon="@drawable/tlb_music"/>
+    <item
+        android:id="@+id/tlb_ic_setting"
+        app:showAsAction="always"
+        android:title="Add"
+        android:icon="@drawable/tlb_setting"/>
+</menu>
