@@ -40,7 +40,7 @@ class TalkListFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        Toast.makeText(context, "onStart_Fragment", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, "onStart_Fragment", Toast.LENGTH_SHORT).show()
 
         binding.talkListImgTalkBanner.setImageResource(BannerListItemList[bannerIdx].imgRsc)
     }

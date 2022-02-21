@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
             businessCardArrayList.add(BusinessCard(name = "park", contents = "010-4567-4567"))
         }
 
-        val customAdapter = CustomAdapter(this, businessCardArrayList)
+        val customAdapter = CustomAdapterMain(this, businessCardArrayList)
         binding.listviewMain.adapter = customAdapter
     }
 }

@@ -20,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show()
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("이메일 주소가 맞지 않습니다.")
@@ -70,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show()
 
         sharedPreferences = getSharedPreferences("test", MODE_PRIVATE)
         loginFailCnt = sharedPreferences.getInt("loginFailCnt", 0)
@@ -84,14 +84,14 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show()
 
         binding.loginTxtFailCnt.text = loginFailCnt.toString()
     }
 
     override fun onPause() {
         super.onPause()
-        Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show()
 
         sharedPreferences = getSharedPreferences("test", MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
@@ -109,7 +109,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show()
 
         binding.loginEdtUserId.setText("")
         binding.loginEdtUserPw.setText("")

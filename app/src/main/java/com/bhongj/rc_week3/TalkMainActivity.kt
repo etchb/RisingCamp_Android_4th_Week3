@@ -1,6 +1,7 @@
 package com.bhongj.rc_week3
 
 import android.content.SharedPreferences
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -19,11 +20,12 @@ class TalkMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTalkMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show()
 
         setSupportActionBar(binding.tlbTalkList)
 
         binding.bottomNav.itemIconTintList = null
+
         initNavigationBar()
     }
 
@@ -40,6 +42,7 @@ class TalkMainActivity : AppCompatActivity() {
                     R.id.bttmenu_friend -> {
                         changeFragment(talkFriendFragment)
                         binding.tlbTalkList.title = "친구"
+                        binding.bottomNav.menu
                     }
                     R.id.bttmenu_talk_list -> {
                         changeFragment(talkListFragment)
@@ -57,12 +60,12 @@ class TalkMainActivity : AppCompatActivity() {
                         changeFragment(talkSettingFragment)
                         binding.tlbTalkList.title = "Setting"
                         initCheck = true
-                        Toast.makeText(context, "init sharedPreferences", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(context, "init sharedPreferences", Toast.LENGTH_SHORT).show()
                     }
                 }
                 true
             }
-            selectedItemId = R.id.bttmenu_talk_list
+            selectedItemId = R.id.bttmenu_friend
         }
     }
 
@@ -78,7 +81,7 @@ class TalkMainActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
-        Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show()
 
         bannerIdx++
         if (bannerIdx >= BannerListItemList.size) {
@@ -88,7 +91,7 @@ class TalkMainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show()
 
         /* init setting */
         if (initCheck) {

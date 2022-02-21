@@ -3,21 +3,21 @@
     <item
         android:id="@+id/bttmenu_friend"
         android:title="친구목록"
-        android:icon="@drawable/friends_list"/>
+        android:icon="@drawable/bttm_navi_friend_list"/>
     <item
         android:id="@+id/bttmenu_talk_list"
         android:title="채팅목록"
-        android:icon="@drawable/talk_list"/>
+        android:icon="@drawable/bttm_navi_talk_list"/>
     <item
         android:id="@+id/bttmenu_view_page"
         android:title="View"
-        android:icon="@drawable/view_page"/>
+        android:icon="@drawable/bttm_navi_view_page"/>
     <item
         android:id="@+id/bttmenu_shop_page"
         android:title="Shop"
-        android:icon="@drawable/shop_page"/>
+        android:icon="@drawable/bttm_navi_shop_page"/>
     <item
         android:id="@+id/bttmenu_setting"
         android:title="설정"
-        android:icon="@drawable/setting"/>
+        android:icon="@drawable/bttm_navi_setting"/>
 </menu>

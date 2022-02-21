@@ -16,7 +16,7 @@ class TalkPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTalkPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show()
 
         setSupportActionBar(binding.tlbTalkPage)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -36,7 +36,7 @@ class TalkPageActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show()
 
         val name = intent.getStringExtra("name")
         val message = intent.getStringExtra("message")
@@ -58,7 +58,7 @@ class TalkPageActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show()
 
         sharedPreferences = getSharedPreferences("test", MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
