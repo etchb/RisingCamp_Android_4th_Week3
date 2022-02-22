@@ -12,8 +12,6 @@
         <activity
             android:name=".TalkPageActivity"
             android:exported="false">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".TalkMainActivity"/>
         </activity>
         <activity
             android:name=".TalkMainActivity"

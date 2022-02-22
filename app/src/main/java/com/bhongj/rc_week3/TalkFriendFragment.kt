@@ -1,7 +1,12 @@
 package com.bhongj.rc_week3
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.AdapterView
+import android.widget.ListView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.bhongj.rc_week3.databinding.FragmentTalkFriendBinding
 
@@ -13,7 +18,6 @@ import com.bhongj.rc_week3.databinding.FragmentTalkFriendBinding
 class TalkFriendFragment : Fragment() {
     private lateinit var _binding: FragmentTalkFriendBinding
     private val binding get() = _binding!!
-    private var businessCardArrayList = ArrayList<BusinessCard>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +32,14 @@ class TalkFriendFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentTalkFriendBinding.inflate(layoutInflater, container, false)
 
-        for(i in 1..20) {
-            businessCardArrayList.add(BusinessCard(name = "김아무개", contents = "010-1234-1234"))
-            businessCardArrayList.add(BusinessCard(name = "박아무개", contents = "010-4567-4567"))
+        for (i in 1..5) {
+            TalkListItemList.add(TalkListItem(name = "박아무개", stateMessage = "박아무개 상태메시지"))
+            TalkListItemList.add(TalkListItem(name = "최아무개", stateMessage = "최아무개 상태메시지"))
+            TalkListItemList.add(TalkListItem(name = "이아무개", stateMessage = "이아무개 상태메시지"))
+            TalkListItemList.add(TalkListItem(name = "정아무개"))
         }
 
-        val customAdapter = CustomAdapter(binding.root.context, businessCardArrayList)
+        val customAdapter = CustomAdapter(binding.root.context, TalkListItemList)
         binding.listviewFriend.adapter = customAdapter
 
         return binding.root

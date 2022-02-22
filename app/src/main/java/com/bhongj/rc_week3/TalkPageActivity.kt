@@ -39,21 +39,37 @@ class TalkPageActivity : AppCompatActivity() {
 //        Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show()
 
         val name = intent.getStringExtra("name")
-        val message = intent.getStringExtra("message")
-        val imgRsc = intent.getIntExtra("imgRsc", 0)
 
+        println("name : " + name)
+        val itemData = TalkListItemList.filter { it.name == name }
+
+        val message = itemData[0].message
+        val date = itemData[0].date
+        val imgRsc = itemData[0].imgRsc
         binding.tlbTalkPage.title = name
+
+        binding.talkPageName.text = name
+        binding.talkPageMessage.text = message[0]
+        binding.talkPageDate.text = date[0]
         if (imgRsc != 0) {
             binding.talkPageImg.setImageResource(imgRsc)
         }
-        binding.talkPageMessage.text = message
-        binding.talkPageName.text = name
 
         sharedPreferences = getSharedPreferences("test", MODE_PRIVATE)
         val lastMessage = sharedPreferences.getString(name, "defaultName")
         if (lastMessage != "defaultName") {
             binding.talkPageEdtMessage.setText(lastMessage)
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
     override fun onDestroy() {

@@ -21,7 +21,6 @@ class CustomAdapterMain(context: Context, private val businessCardArrayList: Arr
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
 
         binding = ListviewItemMainBinding.inflate(inflater, p2, false)
-
         binding.listviewTxtName.text = businessCardArrayList[p0].name
         binding.listviewTxtContent.text = businessCardArrayList[p0].contents
 

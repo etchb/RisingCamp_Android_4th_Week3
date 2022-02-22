@@ -32,7 +32,9 @@ class TalkListFragment : Fragment() {
 
         val talkListRcyView = binding.rcyTalkList
         talkListRcyView.layoutManager = LinearLayoutManager(context)
-        adapter = TalkListAdapter(TalkListItemList)
+
+        val talkList:MutableList<TalkListItem> = TalkListItemList.filter { it.message.size > 0 } as MutableList<TalkListItem>
+        adapter = TalkListAdapter(talkList)
         talkListRcyView.adapter = adapter
 
         return binding.root
