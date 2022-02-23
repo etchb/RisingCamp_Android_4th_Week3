@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/topgray"
+    android:background="#FF252525"
     tools:context=".TalkPageActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -29,109 +29,22 @@
             app:titleTextColor="@color/white">
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
-    <ScrollView
-        android:id="@+id/scrl_talk_page"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/talk_page_rcyview_chat"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#FF252525"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/tlblay_talk_page"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/linlay_bttm">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dp">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/talk_page_img_card"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    app:cardCornerRadius="20dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintVertical_bias="0"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/talk_page_img"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#FF252525"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_gyobo" />
-                </androidx.cardview.widget.CardView>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/talk_page_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:text="토스"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toTopOf="@+id/talk_page_message"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintLeft_toRightOf="@+id/talk_page_img_card"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/talk_page_text_back"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/talk_background"
-                    app:layout_constraintBottom_toBottomOf="@+id/talk_page_message"
-                    app:layout_constraintLeft_toLeftOf="@+id/talk_page_message"
-                    app:layout_constraintRight_toRightOf="@+id/talk_page_message"
-                    app:layout_constraintTop_toTopOf="@+id/talk_page_message" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/talk_page_message"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:padding="15dp"
-                    android:text="안녕하세요."
-                    android:textSize="15sp"
-                    android:autoLink="all"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintLeft_toRightOf="@+id/talk_page_img_card"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/talk_page_name" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/talk_page_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="오후 1:09"
-                    android:textSize="8sp"
-                    android:layout_marginBottom="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@+id/talk_page_text_back"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/talk_page_name"
-                    app:layout_constraintVertical_bias="1"
-                    app:layout_constraintHorizontal_bias="0"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-    </ScrollView>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linlay_bttm"
+        app:layout_constraintVertical_bias="0"
+        tools:listitem="@layout/chat_recycler" />
     <LinearLayout
         android:id="@+id/linlay_bttm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/scrl_talk_page"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

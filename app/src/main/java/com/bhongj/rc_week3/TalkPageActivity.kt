@@ -5,12 +5,13 @@ import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bhongj.rc_week3.databinding.ActivityTalkPageBinding
 
 class TalkPageActivity : AppCompatActivity() {
     lateinit var binding: ActivityTalkPageBinding
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var adapter: ChatAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,20 +40,12 @@ class TalkPageActivity : AppCompatActivity() {
 //        Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show()
 
         val name = intent.getStringExtra("name")
-
-        println("name : " + name)
-        val itemData = TalkListItemList.filter { it.name == name }
-
-        val message = itemData[0].message
-        val date = itemData[0].date
-        val imgRsc = itemData[0].imgRsc
-        binding.tlbTalkPage.title = name
-
-        binding.talkPageName.text = name
-        binding.talkPageMessage.text = message[0]
-        binding.talkPageDate.text = date[0]
-        if (imgRsc != 0) {
-            binding.talkPageImg.setImageResource(imgRsc)
+        val talkListItemListFilt : List<TalkListItem> = TalkListItemList.filter { it.name == name}
+        binding.talkPageRcyviewChat.layoutManager = LinearLayoutManager(this)
+        if (talkListItemListFilt.isNotEmpty()) {
+            val talkListItem : TalkListItem = talkListItemListFilt[0]
+            adapter = ChatAdapter(talkListItem)
+            binding.talkPageRcyviewChat.adapter = adapter
         }
 
         sharedPreferences = getSharedPreferences("test", MODE_PRIVATE)
@@ -78,9 +71,9 @@ class TalkPageActivity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences("test", MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
-        val name = binding.talkPageName.text.toString()
+//        val name = binding.talkPageName.text.toString()
         val text = binding.talkPageEdtMessage.text.toString()
-        editor.putString(name, text)
+//        editor.putString(name, text)
         editor.apply()
     }
 }

@@ -49,9 +49,9 @@ val TalkListItemList = mutableListOf<TalkListItem>(
     TalkListItem(
         name = "안드로",
         stateMessage = "안드로이드 짱",
-        message = mutableListOf("안녕?"),
-        date = mutableListOf("오후 1:30"),
-        isMineFlag = mutableListOf(false),
+        message = mutableListOf("안녕?","나는 안드로라고 해","뭐해?"),
+        date = mutableListOf("오후 1:30","오후 1:31","오후 1:32"),
+        isMineFlag = mutableListOf(false,false,false),
         imgRsc = R.drawable.pic4,
         isChecked = false,
     ),

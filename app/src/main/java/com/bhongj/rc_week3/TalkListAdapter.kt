@@ -18,6 +18,10 @@ class TalkListAdapter(private val dataList: MutableList<TalkListItem>) :
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
+    // class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    // var name: TextView = view.findViewById(R.id.rcy_txt_name)
+    // var message: TextView = view.findViewById(R.id.rcy_txt_message)
+    // var img: ImageView = view.findViewById(R.id.rcy_img)
     class ViewHolder(binding: ItemRecyclerBinding) : RecyclerView.ViewHolder(binding.root) {
         var name: TextView = binding.rcyTxtName
         var message: TextView = binding.rcyTxtMessage
@@ -35,13 +39,10 @@ class TalkListAdapter(private val dataList: MutableList<TalkListItem>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-        binding = ItemRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
 //        val view = LayoutInflater.from(parent.context)
 //            .inflate(R.layout.item_recycler, parent, false)
-
 //        return ViewHolder(view)
+        binding = ItemRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
