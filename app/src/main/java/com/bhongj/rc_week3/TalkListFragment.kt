@@ -40,7 +40,7 @@ class TalkListFragment : Fragment() {
         super.onStart()
 //        Toast.makeText(context, "onStart_Fragment", Toast.LENGTH_SHORT).show()
 
-        val talkList:MutableList<TalkListItem> = TalkListItemList.filter { it.message.size > 0 } as MutableList<TalkListItem>
+        val talkList:MutableList<TalkListItem> = talkListItemList.filter { it.message.size > 0 } as MutableList<TalkListItem>
         adapter = TalkListAdapter(talkList)
         binding.rcyTalkList.adapter = adapter
 

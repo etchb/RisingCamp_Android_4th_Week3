@@ -33,13 +33,13 @@ class TalkFriendFragment : Fragment() {
         _binding = FragmentTalkFriendBinding.inflate(layoutInflater, container, false)
 
         for (i in 1..5) {
-            TalkListItemList.add(TalkListItem(name = "박아무개", stateMessage = "박아무개 상태메시지"))
-            TalkListItemList.add(TalkListItem(name = "최아무개", stateMessage = "최아무개 상태메시지"))
-            TalkListItemList.add(TalkListItem(name = "이아무개", stateMessage = "이아무개 상태메시지"))
-            TalkListItemList.add(TalkListItem(name = "정아무개"))
+            talkListItemList.add(TalkListItem(name = "박아무개", stateMessage = "박아무개 상태메시지"))
+            talkListItemList.add(TalkListItem(name = "최아무개", stateMessage = "최아무개 상태메시지"))
+            talkListItemList.add(TalkListItem(name = "이아무개", stateMessage = "이아무개 상태메시지"))
+            talkListItemList.add(TalkListItem(name = "정아무개"))
         }
 
-        val customAdapter = CustomAdapter(binding.root.context, TalkListItemList)
+        val customAdapter = CustomAdapter(binding.root.context, talkListItemList)
         binding.listviewFriend.adapter = customAdapter
 
         return binding.root

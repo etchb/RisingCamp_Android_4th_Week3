@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FF252525"
-    android:padding="5dp">
+    android:paddingHorizontal="5dp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/talk_page_text_back"
@@ -26,6 +26,7 @@
         android:paddingVertical="13dp"
         android:paddingHorizontal="13dp"
         android:text="안녕하세요."
+        android:textColor="@color/black"
         android:textSize="13sp"
         android:autoLink="all"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,11 +42,11 @@
         android:gravity="center"
         android:text="오후 1:09"
         android:textSize="8sp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/talk_page_message"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/talk_page_text_back"
         app:layout_constraintRight_toLeftOf="@+id/talk_page_text_back"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/talk_page_message"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/talk_page_text_back"
         app:layout_constraintVertical_bias="1"
-        app:layout_constraintHorizontal_bias="0"/>
+        app:layout_constraintHorizontal_bias="1"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,10 +2,10 @@ package com.bhongj.rc_week3
 
 data class TalkListItem(
     var name: String = "김아무개",
-    val stateMessage: String? = null,
+    var stateMessage: String? = null,
     var message: MutableList<String> = mutableListOf<String>(),
     var date: MutableList<String> = mutableListOf<String>(),
-    var isMineFlag: MutableList<Boolean> = mutableListOf<Boolean>(),
+    var isMineFlag: MutableList<Int> = mutableListOf<Int>(),
     var imgRsc: Int = R.drawable.ic_launcher_foreground,
     var isChecked: Boolean = false,
 )
@@ -15,13 +15,13 @@ data class BannerListItem(
     var imgRsc: Int
 )
 
-val TalkListItemList = mutableListOf<TalkListItem>(
+val talkListItemList = mutableListOf<TalkListItem>(
     TalkListItem(
         name = "토스뱅크",
         stateMessage = "No.1 인터넷뱅킹 토스뱅크",
         message = mutableListOf("안녕하세요. 토스뱅크입니다."),
         date = mutableListOf("오후 1:09"),
-        isMineFlag = mutableListOf(false),
+        isMineFlag = mutableListOf(0),
         imgRsc = R.drawable.pic1,
         isChecked = false,
     ),
@@ -31,7 +31,7 @@ val TalkListItemList = mutableListOf<TalkListItem>(
         stateMessage = null,
         message = mutableListOf("고객센터 : 1500-1500"),
         date = mutableListOf("오후 1:09"),
-        isMineFlag = mutableListOf(false),
+        isMineFlag = mutableListOf(0),
         imgRsc = R.drawable.pic2,
         isChecked = false,
     ),
@@ -41,7 +41,7 @@ val TalkListItemList = mutableListOf<TalkListItem>(
         stateMessage = "우리들의 서점 교보문고",
         message = mutableListOf("홈페이지 : www.naver.com"),
         date = mutableListOf("오후 1:09"),
-        isMineFlag = mutableListOf(false),
+        isMineFlag = mutableListOf(0),
         imgRsc = R.drawable.pic3,
         isChecked = false,
     ),
@@ -49,9 +49,9 @@ val TalkListItemList = mutableListOf<TalkListItem>(
     TalkListItem(
         name = "안드로",
         stateMessage = "안드로이드 짱",
-        message = mutableListOf("안녕?","나는 안드로라고 해","뭐해?"),
-        date = mutableListOf("오후 1:30","오후 1:31","오후 1:32"),
-        isMineFlag = mutableListOf(false,false,false),
+        message = mutableListOf("안녕?","나는 안드로라고 해","안녕하세요.","뭐해?"),
+        date = mutableListOf("오후 1:30","오후 1:31","오후 1:32","오후 1:33"),
+        isMineFlag = mutableListOf(0,0,1,0),
         imgRsc = R.drawable.pic4,
         isChecked = false,
     ),

@@ -38,8 +38,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/linlay_bttm"
+        android:paddingTop="5dp"
         app:layout_constraintVertical_bias="0"
-        tools:listitem="@layout/chat_recycler" />
+        tools:listitem="@layout/chat_recycler_right" />
     <LinearLayout
         android:id="@+id/linlay_bttm"
         android:layout_width="match_parent"
@@ -55,20 +56,19 @@
         android:layout_margin="0dp">
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/talk_page_btn_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
             android:layout_gravity="center"
             android:background="#FF2D2D2D"
             android:layout_marginLeft="5dp"
-            android:layout_weight="1"
             android:clickable="true"
             android:scaleType="centerInside"
             android:src="@drawable/talk_plus"/>
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/talk_page_edt_message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="7"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:layout_margin="5dp"
             android:maxLines="4"
             android:background="@null"
@@ -76,25 +76,22 @@
             android:gravity="center_vertical"
             android:layout_gravity="center_vertical"
             android:inputType="textMultiLine" />
+
         <androidx.appcompat.widget.AppCompatImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
             android:layout_gravity="center"
-            android:background="#FF2D2D2D"
             android:layout_margin="0dp"
-            android:layout_weight="1"
+            android:background="#FF2D2D2D"
             android:scaleType="centerInside"
-            android:src="@drawable/talk_emoji"/>
+            android:src="@drawable/talk_emoji" />
         <androidx.appcompat.widget.AppCompatImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/talk_page_btn_send_sharp"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
             android:layout_gravity="center"
             android:background="#FF2D2D2D"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
             android:scaleType="centerInside"
             android:src="@drawable/talk_sharp"/>
-
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
