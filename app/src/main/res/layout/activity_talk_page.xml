@@ -26,6 +26,7 @@
             android:layout_height="50dp"
             android:background="@color/topgray"
             app:title="Name"
+            app:contentInsetStart="0dp"
             app:titleTextColor="@color/white">
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>

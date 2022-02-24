@@ -1,10 +1,14 @@
 package com.bhongj.rc_week3
 
+import android.app.Activity
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Adapter
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.bhongj.rc_week3.databinding.ChatRecyclerBinding
 
@@ -26,27 +30,42 @@ class ChatAdapter (private val talkListItem: TalkListItem) :
             name.text = talkListItem.name
             message.text = talkListItem.message[position]
             date.text = talkListItem.date[position]
+            // talkListItem.isMineFlag[postion]
             img.setImageResource(talkListItem.imgRsc)
-
-//            println("TEST name : " + talkListItem.name)
-//            println("TEST position : " + position.toString())
-//            println("TEST message : " + talkListItem.message[position])
-//            println("TEST date : " + talkListItem.date[position])
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatAdapter.ViewHolder {
         binding = ChatRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        println("TEST name : " + talkListItem.name)
         return ChatAdapter.ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ChatAdapter.ViewHolder, position: Int) {
         if (talkListItem.message.size > 0) {
             holder.bind(talkListItem, position)
-            println("TEST name : " + talkListItem.name)
 //            Toast.makeText(binding.root.context, "DD", Toast.LENGTH_SHORT).show()
 //            println(position)
+            binding.talkPageMessage.setOnLongClickListener { v ->
+                val builder = AlertDialog.Builder(v.context)
+//                builder.setTitle("")
+                builder.setMessage("해당 메시지를 삭제하시겠습니가?")
+                builder.setPositiveButton("삭제") { dialogInterface: DialogInterface, i: Int ->
+                    talkListItem.message.removeAt(position)
+                    talkListItem.date.removeAt(position)
+                    talkListItem.isMineFlag.removeAt(position)
+                    if (talkListItem.message.size == 0) {
+                        (binding.root.context as Activity).finish()
+                    }
+                    else {
+                        notifyItemRemoved(position)
+                    }
+                }
+                builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int ->
+
+                }
+                builder.show()
+                return@setOnLongClickListener true
+            }
         }
     }
 

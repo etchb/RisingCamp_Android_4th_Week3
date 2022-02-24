@@ -40,6 +40,8 @@ class TalkPageActivity : AppCompatActivity() {
 //        Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show()
 
         val name = intent.getStringExtra("name")
+        binding.tlbTalkPage.title = name
+
         val talkListItemListFilt : List<TalkListItem> = TalkListItemList.filter { it.name == name}
         binding.talkPageRcyviewChat.layoutManager = LinearLayoutManager(this)
         if (talkListItemListFilt.isNotEmpty()) {
@@ -53,6 +55,10 @@ class TalkPageActivity : AppCompatActivity() {
         if (lastMessage != "defaultName") {
             binding.talkPageEdtMessage.setText(lastMessage)
         }
+    }
+
+    fun deleteItem() {
+        adapter.notifyDataSetChanged()
     }
 
     override fun onBackPressed() {

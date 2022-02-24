@@ -33,16 +33,16 @@ class TalkListFragment : Fragment() {
         val talkListRcyView = binding.rcyTalkList
         talkListRcyView.layoutManager = LinearLayoutManager(context)
 
-        val talkList:MutableList<TalkListItem> = TalkListItemList.filter { it.message.size > 0 } as MutableList<TalkListItem>
-        adapter = TalkListAdapter(talkList)
-        talkListRcyView.adapter = adapter
-
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
 //        Toast.makeText(context, "onStart_Fragment", Toast.LENGTH_SHORT).show()
+
+        val talkList:MutableList<TalkListItem> = TalkListItemList.filter { it.message.size > 0 } as MutableList<TalkListItem>
+        adapter = TalkListAdapter(talkList)
+        binding.rcyTalkList.adapter = adapter
 
         binding.talkListImgTalkBanner.setImageResource(BannerListItemList[bannerIdx].imgRsc)
     }

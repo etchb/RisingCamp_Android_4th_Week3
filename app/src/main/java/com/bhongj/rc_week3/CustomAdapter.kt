@@ -51,6 +51,7 @@ class CustomAdapter(context: Context, private val TalkListItemList: MutableList<
             if (TalkListItemList[p0].message.size == 0) {
                 TalkListItemList[p0].message.add("채팅을 시작합니다.")
                 TalkListItemList[p0].date.add(date)
+                TalkListItemList[p0].isMineFlag.add(false)
             }
             intent.putExtra("name", TalkListItemList[p0].name)
             ContextCompat.startActivity(binding.root.context, intent, null)
