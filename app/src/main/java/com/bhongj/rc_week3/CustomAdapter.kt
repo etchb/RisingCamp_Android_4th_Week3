@@ -8,13 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentManager
 import com.bhongj.rc_week3.databinding.AlertdialogEdtBinding
 import com.bhongj.rc_week3.databinding.ListviewItemBinding
-import java.text.SimpleDateFormat
 import java.util.*
 
 class CustomAdapter(context: Context, private val talkListItemList: MutableList<TalkListItem>):BaseAdapter() {
@@ -48,17 +45,15 @@ class CustomAdapter(context: Context, private val talkListItemList: MutableList<
         }
 
         binding.layoutLinear.setOnClickListener {
-            val calendar:Calendar = Calendar.getInstance()
-            val sdf = SimpleDateFormat("a hh:mm", Locale.KOREAN)
-            val date = sdf.format(calendar.time)
-
             val intent = Intent(binding.root.context, TalkPageActivity::class.java)
+            val calendar: Calendar = Calendar.getInstance()
             if (talkListItemList[p0].message.size == 0) {
                 talkListItemList[p0].message.add("채팅을 시작합니다.")
-                talkListItemList[p0].date.add(date)
+                talkListItemList[p0].date.add(calendar.time)
                 talkListItemList[p0].isMineFlag.add(0)
             }
             intent.putExtra("name", talkListItemList[p0].name)
+
             ContextCompat.startActivity(binding.root.context, intent, null)
         }
 
@@ -75,6 +70,7 @@ class CustomAdapter(context: Context, private val talkListItemList: MutableList<
         val builderItem = AlertdialogEdtBinding.inflate(inflater)
         val editText = builderItem.editText
         with(builder){
+            setTitle(talkListItemList[pos].name)
             setMessage("변경할 상태메시지를 입력하세요.")
             setView(builderItem.root)
             setPositiveButton("변경"){ dialogInterface: DialogInterface, i: Int ->

@@ -29,7 +29,7 @@ class ChatAdapter (private val talkListItem: TalkListItem) :
         fun bind(talkListItem: TalkListItem, position: Int) {
             name.text = talkListItem.name
             message.text = talkListItem.message[position]
-            date.text = talkListItem.date[position]
+            date.text = chatSdf.format(talkListItem.date[position])
             // talkListItem.isMineFlag[postion]
             img.setImageResource(talkListItem.imgRsc)
         }

@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="오후 1:09"
-        android:textSize="8sp"
+        android:textSize="10sp"
         android:layout_marginBottom="3dp"
         app:layout_constraintBottom_toBottomOf="@+id/talk_page_text_back"
         app:layout_constraintLeft_toRightOf="@+id/talk_page_text_back"

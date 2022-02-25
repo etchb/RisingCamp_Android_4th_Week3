@@ -1,17 +1,28 @@
 package com.bhongj.rc_week3
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Selection
+import android.view.FocusFinder
+import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.InputMethod
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bhongj.rc_week3.databinding.ActivityTalkMainBinding
 import com.bhongj.rc_week3.databinding.ActivityTalkPageBinding
+import com.bhongj.rc_week3.databinding.ListviewItemBinding
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.concurrent.fixedRateTimer
 
 class TalkPageActivity : AppCompatActivity() {
     lateinit var binding: ActivityTalkPageBinding
@@ -19,6 +30,7 @@ class TalkPageActivity : AppCompatActivity() {
 //    private lateinit var adapter: ChatAdapter
     private lateinit var adapter: MutiviewAdapter
     private var sendBtnEnabled: Boolean = false
+    private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +41,7 @@ class TalkPageActivity : AppCompatActivity() {
         setSupportActionBar(binding.tlbTalkPage)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        binding.talkPageBtnAdd.setOnClickListener {
+        binding.talkPageBtnAdd.setOnLongClickListener {
             val txt = binding.talkPageEdtMessage.text.toString()
             var num: String = try {
                 txt.toInt()
@@ -39,6 +51,7 @@ class TalkPageActivity : AppCompatActivity() {
             }
             val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:$num"))
             startActivity(intent)
+            return@setOnLongClickListener true
         }
 
         binding.talkPageEdtMessage.addTextChangedListener {
@@ -71,18 +84,72 @@ class TalkPageActivity : AppCompatActivity() {
             adapter = MutiviewAdapter(this, talkListItem)
             binding.talkPageRcyviewChat.adapter = adapter
 
+            binding.talkPageEdtMessage.requestFocus()
+
+            keyboardVisibilityUtils = KeyboardVisibilityUtils(window,
+                onShowKeyboard = { keyboardHeight ->
+                    binding.talkPageRcyviewChat.scrollToPosition(talkListItem.message.size-1)
+                })
+
             binding.talkPageBtnSendSharp.setOnClickListener {
-                val calendar: Calendar = Calendar.getInstance()
-                val sdf = SimpleDateFormat("a hh:mm", Locale.KOREAN)
-                val date = sdf.format(calendar.time)
                 val message = binding.talkPageEdtMessage.text.toString()
-                binding.talkPageEdtMessage.text?.clear()
+                if (message.isNotEmpty()) {
+                    binding.talkPageEdtMessage.text?.clear()
+                    val calendar: Calendar = Calendar.getInstance()
+                    val daySdf = SimpleDateFormat("dd", Locale.KOREAN)
+                    val dayNow = daySdf.format(calendar.time)
 
-                talkListItem.message.add(message)
-                talkListItem.date.add(date)
-                talkListItem.isMineFlag.add(1)
+                    if (daySdf.format(talkListItem.date[adapter.itemCount-1]) == dayNow) {
+                        talkListItem.message.add(message)
+                        talkListItem.date.add(calendar.time)
+                        talkListItem.isMineFlag.add(1)
 
-                adapter.notifyItemInserted(talkListItem.message.size-1)
+                        adapter.notifyItemInserted(adapter.itemCount-1)
+                    }
+                    else {
+                        talkListItem.message.add("header")
+                        talkListItem.date.add(calendar.time)
+                        talkListItem.isMineFlag.add(2)
+
+                        talkListItem.message.add(message)
+                        talkListItem.date.add(calendar.time)
+                        talkListItem.isMineFlag.add(1)
+
+                        adapter.notifyItemRangeInserted(adapter.itemCount-2, 2)
+                    }
+                    binding.talkPageRcyviewChat.scrollToPosition(adapter.itemCount-1)
+                }
+            }
+
+            binding.talkPageBtnAdd.setOnClickListener {
+                val message = binding.talkPageEdtMessage.text.toString()
+                if (message.isNotEmpty()) {
+                    val calendar: Calendar = Calendar.getInstance()
+                    binding.talkPageEdtMessage.text?.clear()
+
+                    val daySdf = SimpleDateFormat("dd", Locale.KOREAN)
+                    val dayNow = daySdf.format(calendar.time)
+
+                    if (daySdf.format(talkListItem.date[adapter.itemCount-1]) == dayNow) {
+                        talkListItem.message.add(message)
+                        talkListItem.date.add(calendar.time)
+                        talkListItem.isMineFlag.add(0)
+
+                        adapter.notifyItemInserted(adapter.itemCount-1)
+                    }
+                    else {
+                        talkListItem.message.add("header")
+                        talkListItem.date.add(calendar.time)
+                        talkListItem.isMineFlag.add(2)
+
+                        talkListItem.message.add(message)
+                        talkListItem.date.add(calendar.time)
+                        talkListItem.isMineFlag.add(0)
+
+                        adapter.notifyItemRangeInserted(adapter.itemCount-2, 2)
+                    }
+                    binding.talkPageRcyviewChat.scrollToPosition(adapter.itemCount-1)
+                }
             }
         }
 
@@ -90,6 +157,7 @@ class TalkPageActivity : AppCompatActivity() {
         val lastMessage = sharedPreferences.getString(name, "defaultName")
         if (lastMessage != "defaultName") {
             binding.talkPageEdtMessage.setText(lastMessage)
+            binding.talkPageEdtMessage.setSelection(binding.talkPageEdtMessage.text.toString().length)
         }
     }
 
@@ -113,9 +181,10 @@ class TalkPageActivity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences("test", MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
-//        val name = binding.talkPageName.text.toString()
+        val name = binding.tlbTalkPage.title.toString()
         val text = binding.talkPageEdtMessage.text.toString()
-//        editor.putString(name, text)
+        editor.putString(name, text)
         editor.apply()
     }
 }
+

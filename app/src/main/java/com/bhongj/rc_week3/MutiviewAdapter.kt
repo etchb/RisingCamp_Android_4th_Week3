@@ -11,12 +11,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bhongj.rc_week3.databinding.ChatRecyclerBinding
+import com.bhongj.rc_week3.databinding.ChatRecyclerHeaderBinding
 import com.bhongj.rc_week3.databinding.ChatRecyclerRightBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MutiviewAdapter(private val context: Context, private val talkListItem: TalkListItem) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     lateinit var binding: ChatRecyclerBinding
     lateinit var bindingRight: ChatRecyclerRightBinding
+    lateinit var bindingHeader: ChatRecyclerHeaderBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType) {
@@ -24,9 +28,13 @@ class MutiviewAdapter(private val context: Context, private val talkListItem: Ta
                 binding = ChatRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 MutiviewAdapter.MultiViewHolder1(binding)
             }
-            else -> {
+            1 -> {
                 bindingRight = ChatRecyclerRightBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 return MutiviewAdapter.MultiViewHolder2(bindingRight)
+            }
+            else -> {
+                bindingHeader = ChatRecyclerHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                return MutiviewAdapter.MultiViewHolder3(bindingHeader)
             }
         }
     }
@@ -58,7 +66,7 @@ class MutiviewAdapter(private val context: Context, private val talkListItem: Ta
                         return@setOnLongClickListener true
                     }
                 }
-                else -> {
+                1 -> {
                     (holder as MultiViewHolder2).bind(talkListItem, position)
                     holder.setIsRecyclable(false)
                     bindingRight.talkPageMessage.setOnLongClickListener { v ->
@@ -82,6 +90,10 @@ class MutiviewAdapter(private val context: Context, private val talkListItem: Ta
                         return@setOnLongClickListener true
                     }
                 }
+                else -> {
+                    (holder as MultiViewHolder3).bind(talkListItem, position)
+                    holder.setIsRecyclable(false)
+                }
             }
         }
     }
@@ -96,7 +108,7 @@ class MutiviewAdapter(private val context: Context, private val talkListItem: Ta
         fun bind(talkListItem: TalkListItem, position: Int) {
             name.text = talkListItem.name
             message.text = talkListItem.message[position]
-            date.text = talkListItem.date[position]
+            date.text = chatSdf.format(talkListItem.date[position])
             // talkListItem.isMineFlag[postion]
             img.setImageResource(talkListItem.imgRsc)
         }
@@ -109,7 +121,17 @@ class MutiviewAdapter(private val context: Context, private val talkListItem: Ta
 
         fun bind(talkListItem: TalkListItem, position: Int) {
             message.text = talkListItem.message[position]
-            date.text = talkListItem.date[position]
+            date.text = chatSdf.format(talkListItem.date[position])
+        }
+    }
+
+    class MultiViewHolder3(binding: ChatRecyclerHeaderBinding) : RecyclerView.ViewHolder(binding.root) {
+        val sdfHeader = SimpleDateFormat("YYYY년 MMM dd일 EEEE", Locale.KOREAN)
+
+        var header: TextView = binding.talkPageTxtHeader
+
+        fun bind(talkListItem: TalkListItem, position: Int) {
+            header.text = sdfHeader.format(talkListItem.date[position])
         }
     }
 
